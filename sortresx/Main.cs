@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 
 namespace Codice.SortResX
 {
@@ -12,13 +13,25 @@ namespace Codice.SortResX
                 if (args.Length <= 0)
                     return 1;
 
-                if (!CheckArgs(args[0]))
-                    return 1;
+                //if (!CheckArgs(args[0]))
+                //    return 1;
 
                 try
                 {
-                    fileSorter = new ResourceFileSorter(args[0]);
-                    fileSorter.Sort();
+                    Console.WriteLine("================================");
+                    foreach(var arg in args)
+                    {
+                        var files = GetFilePaths(arg);
+                        foreach(var file in files)
+                        {
+                            if (!CheckArgs(file))
+                                return 1;
+                            Console.WriteLine("Sorting: " + file);
+                            fileSorter = new ResourceFileSorter(file);
+                            fileSorter.Sort();
+                        }
+                    }
+                    Console.WriteLine("================================");
                 }
                 catch (Exception)
                 {
@@ -36,6 +49,12 @@ namespace Codice.SortResX
         static bool CheckArgs(string filepath)
         {
             return File.Exists(filepath);
+        }
+
+        static string[] GetFilePaths(string filePathPattern)
+        {
+            var pattern = System.IO.Path.IsPathRooted(filePathPattern) ? filePathPattern : Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + filePathPattern;
+            return Directory.GetFiles(pattern, "*.resx", SearchOption.AllDirectories);
         }
     }
 
