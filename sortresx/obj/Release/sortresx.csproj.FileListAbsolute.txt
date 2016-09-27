@@ -1,0 +1,3 @@
+D:\Users\benlam\Documents\git_Repos\forked\sortresx\sortresx\bin\Release\sortresx.exe
+D:\Users\benlam\Documents\git_Repos\forked\sortresx\sortresx\obj\Release\sortresx.csprojResolveAssemblyReference.cache
+D:\Users\benlam\Documents\git_Repos\forked\sortresx\sortresx\obj\Release\sortresx.exe
