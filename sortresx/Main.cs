@@ -18,7 +18,6 @@ namespace Codice.SortResX
 
                 try
                 {
-                    Console.WriteLine("================================");
                     foreach(var arg in args)
                     {
                         var files = GetFilePaths(arg);
@@ -31,11 +30,9 @@ namespace Codice.SortResX
                             fileSorter.Sort();
                         }
                     }
-                    Console.WriteLine("================================");
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("================================");
                     Console.WriteLine("Could not sort resources. Abort.");
                 }
                 return 0;
